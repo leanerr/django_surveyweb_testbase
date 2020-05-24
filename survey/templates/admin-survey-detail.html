@@ -1,0 +1,59 @@
+<html>
+<head>
+	<script src= "http://code.jquery.com/jquery-2.1.1.js"> </script>
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<style type = "text/css">
+	.centerdv
+	{
+		margin-top: 10%;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+	</style>
+	   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href={% url 'root'%}>Survey Site</a>
+        </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href={% url 'admin-survey-create-view' %}>Add Survey</a></li>
+            <li><a href={% url 'admin-panel'%}>View Survey Data</a></li>
+          </ul>
+      </div>
+    </div>
+
+    <div class = "centerdv container">
+    	    <div class = "page-header">
+    			<h2>{{survey.title}}</h2>
+    		</div>
+    <div class="panel panel-default">
+       <table class="table">
+    <thead>
+      <tr>
+        <th>Question ID#</th>
+        <th>Question Title</th>
+        <th>Answer</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for answer in answers %}
+      
+        
+        {% for qa in answer.questionanswer_set.all %}
+        <tr>
+        <td>{{qa.answer.question.id}}</td>
+        <td>{{qa.answer.question.question_text}}</td>
+        <td>{{qa.answer.choice_text}}</td>
+      </tr>
+        {% endfor %}
+     
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
+

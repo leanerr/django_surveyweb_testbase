@@ -1,0 +1,84 @@
+<html>
+<head>
+	<script src= "http://code.jquery.com/jquery-2.1.1.js"> </script>
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<style type = "text/css">
+	.centerdv
+	{
+		margin-top: 5%;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+	.idtextbox
+	{
+		margin-top: 5%;
+		margin-bottom: 5%;
+		width: 80%;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+	.idbutton
+	{
+		width: 20%;
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	</style>
+<div class="jumbotron container centerdv">
+  <h1>Simple Survey Site</h1>
+  <p>Take Surveys here</p>
+  <p><a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#surveyIDmodal">Take a Survey</a>
+  <a class="btn btn-info btn-lg" role="button" data-toggle="modal" data-target="#adminLoginModal">Admin Login</a></p>
+  		{% if login == False %}
+  		<div class="alert alert-danger alert-dismissible" role="alert">
+  			  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span>
+  			  	<span class="sr-only">Close</span></button>
+  			  	Bad Login
+  		</div>
+  		{% endif %}
+</div>
+	
+<div class="modal fade" role="dialog" id = "surveyIDmodal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    <div class="modal-header">
+  		<h4>Enter a survey ID#</h4>
+  	</div>
+  	<form method = "post" class = "idtextbox" action = {% url 'load-survey'%}>
+  		{% csrf_token %}
+      <input type = "text" class = "form-control" name = "survey_view">
+      <br>
+      <input type = "submit" class = "btn btn-success" value = "Go!">
+    </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" role="dialog" id = "adminLoginModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    <div class="modal-header">
+  		<h4>Login an Admin User</h4>
+  	</div>
+  	<form method = "post" class = "idtextbox" action = {% url 'admin-login'%}>
+  		{% csrf_token %}
+  		<b>Username:</b>
+      <input type = "text" class = "form-control" name = "username">
+      <br>
+      <b>Password</b>
+      <input type = "password" class = "form-control" name = "password">
+      <br>
+      <input type = "submit" class = "btn btn-success" value = "Login">
+    </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

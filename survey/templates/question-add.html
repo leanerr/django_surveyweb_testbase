@@ -1,0 +1,50 @@
+<html>
+<head>
+	<script src= "http://code.jquery.com/jquery-2.1.1.js"> </script>
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<style type = "text/css">
+	.centerdv
+	{
+		margin-top: 10%;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+	.centerform
+	{
+		margin-left: auto;
+		margin-right: auto;
+		width: 45%;
+	}
+	</style>
+	   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href={% url 'root' %}>Survey Site</a>
+        </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Add Survey</a></li>
+            <li><a href={% url 'admin-panel'%}>View Survey Data</a></li>
+          </ul>
+      </div>
+    </div>
+
+    <div class = "centerdv container">
+    	<div class = "page-header">
+    		<h2>Add a question</h2>
+    	</div>
+    	<br>
+    	<form method = "post"  class = "centerform" action={% url 'admin-question-add' %}>
+        {% csrf_token %}
+    		<b>Question Text</b>
+    		<input type = "text" class = "form-control" name = "question_text">
+    		<br>
+        <p>
+    		<input type = "submit" class= "btn btn-primary" value = "Complete and Add Choices">
+        </p>
+    	</form>
+</body>
+</html>
